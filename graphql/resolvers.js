@@ -32,7 +32,9 @@ export const resolvers = {
         password: hashedPassword
       });
       const savedUser = await user.save();
-      return savedUser;
+      const userObj = savedUser.toObject();
+      delete userObj.password;
+      return userObj;
     } catch (err) {
       throw err;
     }
